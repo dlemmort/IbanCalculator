@@ -7,7 +7,19 @@
 #include <vector>
 #include <iostream>
 
-bool stringToIntegers(std::string inputString, int b,int e,int m,int p,int u,int s){
+bool checkIntegerParameters(int b,int e, int m, int p, int u,int s);
+
+/// Function that takes a string of 5 or 6 whole numbers divided by single spaces and
+/// puts the integer value in one of the passed integer parameters
+/// \param inputString string containing the numbers
+/// \param b first integer parameter
+/// \param e second integer parameter
+/// \param m third integer parameter
+/// \param p fourth integer parameter
+/// \param u fifth integer parameter
+/// \param s sixth integer parameter
+/// \return returns true when string is succesfully parsed into the 6 integer parameters
+bool stringToIntegers(std::string inputString, int& b,int& e,int& m,int& p,int& u,int& s){
     //Use stringstream to read the numbers from the inputString
     std::stringstream iss(inputString);
     std::string numberString;
@@ -46,7 +58,33 @@ bool stringToIntegers(std::string inputString, int b,int e,int m,int p,int u,int
     if (u == 2){
         s = stoi(numbers[5]);
     }
-    return true;
+    if (checkIntegerParameters(b,e,m,p,u,s)) return true;
+    else return false;
+}
 
-
+/// Function checks whether the integers follow the given rules
+/// \param b first integer parameter
+/// \param e second integer parameter
+/// \param m third integer parameter
+/// \param p fourth integer parameter
+/// \param u fifth integer parameter
+/// \return returns true when requirements are met, otherwise returns false
+bool checkIntegerParameters(int b,int e, int m, int p, int u){
+    if (e <= b){
+        std::cout << "second integer must be greater than first integer" << std::endl;
+        return false;
+    }
+    else if (m < 1 || m > 256){
+        std::cout << "third integer must be between 1 and 256" << std::endl;
+        return false;
+    }
+    else if (p < 1 || p > 256){
+        std::cout << "fourth integer must be between 1 and 256" << std::endl;
+        return false;
+    }
+    else if (u < 0 || u > 2){
+        std::cout << "fifth integer must be 0, 1 or 2" << std::endl;
+        return false;
+    }
+    else return true;
 }

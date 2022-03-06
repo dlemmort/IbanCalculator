@@ -7,12 +7,12 @@ int main() {
     std::string inputString;
 
     //Input numbers
-    int b;
-    int e;
-    int m;
-    int p;
-    int u;
-    int s;
+    int b; //lower limit of search range
+    int e; //upper limit of search range
+    int m; //modulus used by the m-check
+    int p; //number of threads to be used
+    int u; //search mode (0: count, 1: list, 2: search)
+    int s; //optional number only used in search mode
 
 
     std::cout << "Welcome to Iban Calculator" << std::endl;
