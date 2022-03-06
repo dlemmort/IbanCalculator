@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "helperFunctions.cpp"
+#include "IbanFunctions.cpp"
 
 int main() {
 
@@ -29,7 +30,11 @@ int main() {
     }
     while (correctNumberString == false);
 
-    std::cout << b << " " << e << " " << m << " " << p << " " << u << " " << s << std::endl;
+    switch(u){
+        case 0: CountMode(b,e,m,p); break;
+        case 1: ListMode(b,e,m,p); break;
+        case 2: SearchMode(b,e,m,p,s); break;
+    }
 
     return 0;
 }

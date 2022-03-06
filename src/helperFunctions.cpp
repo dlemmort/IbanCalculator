@@ -6,8 +6,10 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include <thread>
 
-bool checkIntegerParameters(int b,int e, int m, int p, int u,int s);
+bool checkIntegerParameters(int b,int e, int m, int p, int u);
+int getNumberOfThreads();
 
 /// Function that takes a string of 5 or 6 whole numbers divided by single spaces and
 /// puts the integer value in one of the passed integer parameters
@@ -58,7 +60,7 @@ bool stringToIntegers(std::string inputString, int& b,int& e,int& m,int& p,int& 
     if (u == 2){
         s = stoi(numbers[5]);
     }
-    if (checkIntegerParameters(b,e,m,p,u,s)) return true;
+    if (checkIntegerParameters(b,e,m,p,u)) return true;
     else return false;
 }
 
@@ -70,6 +72,7 @@ bool stringToIntegers(std::string inputString, int& b,int& e,int& m,int& p,int& 
 /// \param u fifth integer parameter
 /// \return returns true when requirements are met, otherwise returns false
 bool checkIntegerParameters(int b,int e, int m, int p, int u){
+    int threads = getNumberOfThreads();
     if (e <= b){
         std::cout << "second integer must be greater than first integer" << std::endl;
         return false;
@@ -78,8 +81,8 @@ bool checkIntegerParameters(int b,int e, int m, int p, int u){
         std::cout << "third integer must be between 1 and 256" << std::endl;
         return false;
     }
-    else if (p < 1 || p > 256){
-        std::cout << "fourth integer must be between 1 and 256" << std::endl;
+    else if (p < 1 || p > threads){
+        std::cout << "fourth integer must be between 1 and " << threads << "(threads available on machine)" << std::endl;
         return false;
     }
     else if (u < 0 || u > 2){
@@ -87,4 +90,9 @@ bool checkIntegerParameters(int b,int e, int m, int p, int u){
         return false;
     }
     else return true;
+}
+
+int getNumberOfThreads(){
+    unsigned int n =  std::thread::hardware_concurrency();
+    return n;
 }
