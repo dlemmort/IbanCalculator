@@ -17,11 +17,30 @@ void ListMode(int b, int e, int m, int p){
     for (int i = b;i<e;i++){
         if (mCheck(i,m)) {
             std::cout << number << " " << i << std::endl;
+            number++;
         }
     }
 }
 
 void SearchMode(int b, int e, int m, int p, int s){
     std::cout << "SearchMode activated" << std::endl;
+    if (s < b || s >= e) {
+        std::cout << "-1" << std::endl;
+        return;
+    }
+    else if (!mCheck(s,m)){
+        std::cout<< "-1" << std::endl;
+    }
+    else {
+        for (int i =b;i<e;i++){
+            if (i == s){
+                std::cout<<i<<std::endl;
+                return;
+            }
+        }
+    }
+    std::cout << "-1" << std::endl;
+    return;
+
 }
 
