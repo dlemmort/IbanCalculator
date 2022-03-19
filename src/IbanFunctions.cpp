@@ -4,6 +4,11 @@
 
 void CountMode(int b, int e, int m, int p){
     std::cout << "CountMode activated" << std::endl;
+    int number = 0;
+    for (int i = b;i < e;i++){
+        if(mCheck(i,m)) number++;
+    }
+    std::cout << number << std::endl;
 }
 
 void ListMode(int b, int e, int m, int p){
