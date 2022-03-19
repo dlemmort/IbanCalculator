@@ -13,6 +13,12 @@ void CountMode(int b, int e, int m, int p){
 
 void ListMode(int b, int e, int m, int p){
     std::cout << "ListMode activated" << std::endl;
+    int number = 1;
+    for (int i = b;i<e;i++){
+        if (mCheck(i,m)) {
+            std::cout << number << " " << i << std::endl;
+        }
+    }
 }
 
 void SearchMode(int b, int e, int m, int p, int s){
