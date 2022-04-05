@@ -96,3 +96,18 @@ int getNumberOfThreads(){
     unsigned int n =  std::thread::hardware_concurrency();
     return n;
 }
+
+bool mCheck(int number, int modulus){
+    int currentNumber = number;
+    int sum = 0;
+    int times = 1;
+
+    while (currentNumber > 0){
+        sum += (currentNumber%10)*times;
+        times++;
+        currentNumber = currentNumber / 10;
+    }
+
+    if (sum % modulus == 0) return true;
+    else return false;
+}
