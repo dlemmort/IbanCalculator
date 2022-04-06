@@ -72,7 +72,6 @@ bool stringToIntegers(std::string inputString, int& b,int& e,int& m,int& p,int& 
 /// \param u fifth integer parameter
 /// \return returns true when requirements are met, otherwise returns false
 bool checkIntegerParameters(int b,int e, int m, int p, int u){
-    int threads = getNumberOfThreads();
     if (e <= b){
         std::cout << "second integer must be greater than first integer" << std::endl;
         return false;
@@ -81,20 +80,11 @@ bool checkIntegerParameters(int b,int e, int m, int p, int u){
         std::cout << "third integer must be between 1 and 256" << std::endl;
         return false;
     }
-    else if (p < 1 || p > threads){
-        std::cout << "fourth integer must be between 1 and " << threads << "(threads available on machine)" << std::endl;
-        return false;
-    }
     else if (u < 0 || u > 2){
         std::cout << "fifth integer must be 0, 1 or 2" << std::endl;
         return false;
     }
     else return true;
-}
-
-int getNumberOfThreads(){
-    unsigned int n =  std::thread::hardware_concurrency();
-    return n;
 }
 
 bool mCheck(int number, int modulus){
@@ -111,3 +101,4 @@ bool mCheck(int number, int modulus){
     if (sum % modulus == 0) return true;
     else return false;
 }
+
